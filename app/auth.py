@@ -1,30 +1,41 @@
-from  flask import Blueprint, redirect, url_for, render_template, request
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
-from .models  import User
-from  .extensions import login_manager
-auth_bp = Blueprint("auth", __name__)
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
+from .extensions import db
+from .models import User, Producto
 
-@auth_bp.route('/')
-def inicio():
-    return redirect(url_for('auth.login'))
+auth_bp = Blueprint("auth", __name__, template_folder="templates")
 
-@auth_bp.route('/login', methods = ['GET','POST']) 
+
+@auth_bp.route("/")
+@auth_bp.route("/index")
+@login_required
+def index():
+    """Página principal (después de iniciar sesión)."""
+    total_productos = Producto.query.count() if Producto.query else 0
+    return render_template("index.html", total_productos=total_productos)
+
+
+@auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        usuario = User.query.filter_by(
-            username = request.form.get("nombreusuario")
-        ).first()
-        
-        if usuario and usuario.check_password(request.form.get("contrasenia")):
-            login_user(usuario)
-            return redirect("/admin")
-    
+        username = (request.form.get("username") or "").strip()
+        password = request.form.get("password") or ""
+
+        user = User.query.filter_by(username=username).first()
+        if user and user.check_password(password):
+            login_user(user)
+            flash("sesión iniciada.", "success")
+            return redirect(url_for("auth.index"))
+
+        flash("❌ Usuario o contraseña incorrectos.", "danger")
+
     return render_template("login.html")
+
+
+@auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
+    flash(" Sesión cerrada.", "info")
     return redirect(url_for("auth.login"))

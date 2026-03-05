@@ -1,23 +1,20 @@
-import pymysql
-
-from app.admin import configuracion_admin
-pymysql.install_as_MySQLdb()
-
 from flask import Flask
 from config import Config
-from .extensions import db, login_manager, admin
+from .extensions import init_extensions
+from .auth import auth_bp
+from .admin import init_admin   # solo uno
 
-def create_app():
-    app = Flask (__name__)
-    app.config.from_object(Config)
-    
-    db.init_app(app)
-    login_manager.init_app(app)
-    
-    admin.init_app(app)
-    from .models import User
-    from .admin import configuracion_admin
-    from .auth import auth_bp
-    configuracion_admin()
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    # 1) extensiones (db, login, migrate)
+    init_extensions(app)
+
+    # 2) blueprints
     app.register_blueprint(auth_bp)
+
+    # 3) admin (una sola vez)
+    init_admin(app)
+
     return app

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Inicio · Repostería{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h1 class="h1">Panel principal</h1>
+    <p class="muted">
+      Bienvenido. Desde aquí puedes entrar al panel de administración.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">Productos registrados</div>
+        <div class="stat-value">{{ total_productos }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Acceso</div>
+        <div class="stat-value">Admin</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/admin/">Abrir Panel Admin</a>
+    </div>
+  </section>
+{% endblock %}

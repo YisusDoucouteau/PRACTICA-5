@@ -1,0 +1,235 @@
+:root{
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-2: #1d4ed8;
+  --danger: #dc2626;
+  --info: #0ea5e9;
+  --success: #16a34a;
+  --border: #e2e8f0;
+  --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Inter", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1000px 500px at 10% 0%, rgba(37,99,235,.12), transparent 55%),
+    radial-gradient(900px 450px at 90% 10%, rgba(14,165,233,.10), transparent 50%),
+    linear-gradient(135deg, #f6f7fb 0%, #eef2ff 100%);
+  min-height: 100vh;
+}
+
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px 18px;
+}
+
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(246,247,251,.75);
+  border-bottom: 1px solid rgba(226,232,240,.85);
+}
+
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.brand{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color: var(--muted);
+  margin-left: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover{ color: var(--primary); }
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 26px;
+  margin-top: 18px;
+}
+
+.card-narrow{
+  max-width: 520px;
+  margin: 28px auto 0;
+}
+
+.h1{
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.muted{
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.form{
+  display: grid;
+  gap: 10px;
+}
+
+.label{
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+}
+
+input{
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus{
+  border-color: rgba(37,99,235,.9);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.15);
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform .05s ease, opacity .15s ease;
+  user-select: none;
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover{ background: var(--primary-2); }
+
+.btn-ghost{
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover{
+  border-color: rgba(37,99,235,.4);
+  color: var(--primary);
+}
+
+.flash-stack{ margin-top: 18px; display: grid; gap: 10px; }
+.flash{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 600;
+}
+.flash-success{ border-color: rgba(22,163,74,.25); background: rgba(22,163,74,.10); }
+.flash-danger{ border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.10); }
+.flash-info{ border-color: rgba(14,165,233,.25); background: rgba(14,165,233,.10); }
+
+.hint{
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hint code{
+  background: rgba(15,23,42,.06);
+  padding: 2px 6px;
+  border-radius: 8px;
+  color: #0f172a;
+}
+
+.stats{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.stat{
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(248,250,252,.6);
+}
+
+.stat-label{
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.stat-value{
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 6px;
+}
+
+.actions{ margin-top: 10px; }
+
+.footer{
+  margin-top: 28px;
+  padding: 18px 0 28px;
+  color: var(--muted);
+}
+/* Admin - look & feel */
+.navbar, .navbar-default {
+  background: #0f172a !important;
+  border-color: #0f172a !important;
+}
+
+.navbar a, .navbar-brand {
+  color: #e2e8f0 !important;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  border-radius: 10px !important;
+}
+
+.btn-danger {
+  border-radius: 10px !important;
+}
+
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background: #f1f5f9 !important;
+  font-weight: 700;
+}

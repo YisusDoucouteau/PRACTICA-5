@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>LOGIN</h2>
-    <form method="POST">
-        <input type="text" name="nombreusuario" placeholder="INgrese usuario" required/>
-        <input type="password" name="contrasenia" placeholder="INgrese contrasenia" required/>
-        <button type="submit"> Ingresar</button>
+{% extends "base.html" %}
+{% block title %}Login · Repostería{% endblock %}
+
+{% block content %}
+  <section class="card card-narrow">
+    <h1 class="h1">Iniciar sesión</h1>
+    <p class="muted">Ingresa con tu usuario y contraseña.</p>
+
+    <form method="POST" class="form">
+      <label class="label" for="username">Usuario</label>
+      <input id="username" name="username" type="text" placeholder="Ej: admin" required>
+
+      <label class="label" for="password">Contraseña</label>
+      <input id="password" name="password" type="password" placeholder="••••••••" required>
+
+      <button class="btn btn-primary" type="submit">Ingresar</button>
+
+      <div class="hint">
+        <strong>prueba para ingreso:</strong> usuario <code>admin</code> · contraseña <code>1234</code>
+      </div>
     </form>
-</body>
-</html>
+  </section>
+{% endblock %}
