@@ -1,47 +1,72 @@
-                PRACTICA NUMERO 5
+PRACTICA NÚMERO 5
+
+Aplicación de Pastelería con Flask
+
+Problema inicial
 
 Al intentar iniciar sesión en el sistema y acceder al panel de administración se producía un error relacionado con la autenticación de usuarios.
 
-El sistema intentaba consultar la tabla user , pero esta no existia por lo que primero se tenia que realizar las migraciones correspondientes para la base de datos 
-----------------------------------
-Implementación de Flask-Migrate
-Se integró Flask-Migrate para gestionar los cambios en la base de datos utilizando migraciones.
+El sistema intentaba consultar la tabla user, pero esta tabla no existía en la base de datos.
+Esto ocurría porque no se habían ejecutado las migraciones necesarias para crear las tablas definidas en los modelos.
+
+Solución: Integración de Flask-Migrate
+
+Para solucionar el problema se integró Flask-Migrate, que permite gestionar los cambios en la base de datos mediante migraciones.
+
 Esto permite:
-Crear tablas automáticamente
+
+Crear las tablas automáticamente a partir de los modelos de SQLAlchemy
+
 Actualizar la estructura de la base de datos
-Mantener control de cambios en el esquema
+
+Mantener control de cambios en el esquema de la base de datos
+
 Comandos utilizados:
+
 flask db init
 flask db migrate
 flask db upgrade
-de esta manera el flask login lograba ingresar 
---------------------------------------
-Se implementó Flask-Admin para crear un panel de administración que permite gestionar los datos de la aplicación de manera sencilla.
-Dentro del panel se pueden administrar:
+
+Después de ejecutar las migraciones, las tablas se crearon correctamente y Flask-Login pudo autenticar usuarios sin problemas.
+
+Implementación del Panel de Administración
+
+También se integró Flask-Admin para crear un panel de administración que permite gestionar los datos de la aplicación.
+
+Desde el panel se pueden administrar:
+
 Usuarios
+
 Productos
-El panel se encuentra disponible en la ruta:
+
+Ruta del panel administrativo:
+
 /admin
-Además se protegió el acceso al panel para que solo los usuarios con rol administrador puedan ingresar porque generalmente en un framework deberia ser de esta manera 
-------------------------------------------------------------------
-Mejoras adicionales que realice para completar de mejor manera la tarea 
-Mejora de la interfaz para navegar y el usuario 
-Se añadieron estilos personalizados en styles.css para mejorar la apariencia del sistema.
-Traducción parcial al español
-Algunos elementos del panel administrativo fueron adaptados al español para que sea más fácil de usar.
 
-Seguridad del panel admin
+Además, el acceso al panel está protegido para que solo usuarios con rol administrador puedan ingresar, utilizando Flask-Login.
 
-Se configuró Flask-Login para restringir el acceso al panel solo a usuarios autenticados con rol admin.
+Mejoras adicionales
 
-Mejor navegación para el backend especialmente para el panel 
+Para mejorar el sistema también se realizaron algunas mejoras adicionales:
 
-Se agregaron opciones dentro del panel administrativo como:
+Mejora de la interfaz con estilos personalizados en styles.css
+
+Traducción parcial del panel administrativo al español
+
+Protección del panel admin usando Flask-Login
+
+Mejora de la navegación agregando opciones como:
 
 Volver al inicio
 
 Cerrar sesión
 
-bueno eso seria todo inge lo realice antes de hacer mi viaje a santa cruz asi que espero que le agrade tenga buena noche 🙌
+Acceso al sistema
 
-PD: para ingresar el usuario suele ser admin y la contraseña 1234
+Usuario de prueba:
+
+usuario: admin
+contraseña: 1234
+Nota
+
+Realicé esta práctica antes de mi viaje a santa cruz, por lo que espero que el resultado sea de su agrado hasta la siguiente clase 🙌
